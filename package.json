@@ -1,0 +1,19 @@
+{
+  "name": "movie-rental",
+  "version": "1.0.0",
+  "description": "Movie rental api created with Nodejs and others technologies",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaogularte/movie-rental-api.git"
+  },
+  "author": "João Vitor Gularte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaogularte/movie-rental-api/issues"
+  },
+  "homepage": "https://github.com/joaogularte/movie-rental-api#readme"
+}
