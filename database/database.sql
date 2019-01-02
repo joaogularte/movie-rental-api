@@ -22,3 +22,15 @@ CREATE TABLE IF NOT EXISTS `movieRental`.`users`(
     `updateAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `movieRental`.`rentals`(
+    `id` BINARY(16) NOT NULL,
+    `idMovie` BINARY(16) NOT NULL,
+    `idUser` BINARY(16) NOT NULL,
+    `status` ENUM('RENTED','RETURNED'),
+    `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updateAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY(`id`),
+    FOREIGN KEY (`idMovie`) REFERENCES `movieRental`.`movies`(`id`),
+    FOREIGN KEY (`idUser`) REFERENCES `movieRental`.`users`(`id`)
+) ENGINE = InnoDB;
