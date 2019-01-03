@@ -1,0 +1,6 @@
+
+#Dependencia de diretorios
+/node_modules
+
+#Arquivos com as variaveis locais de ambiente
+.env
