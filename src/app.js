@@ -7,6 +7,10 @@ const cors          = require('cors');
 const compression   = require('compression');
 const helmet        = require('helmet');
 const bodyParser    = require('body-parser');
+
+/* Rotas */
+const moviesRoutes    = require('./routes/movie');
+
 /* Inicialização do Express app */
 const app = express();
 
@@ -18,4 +22,13 @@ app.use(bodyParser.json({
     limit: process.env.BODY_LIMIT_SIZE
 }));
 
+/* Declaracao das rotas */
+app.use('api/movies', moviesRoutes);
 
+
+app.all('*', (req, res) => {
+    res.status(404).send({
+        success: false,
+        status: '404'
+    })
+});
