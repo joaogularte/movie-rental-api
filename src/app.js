@@ -10,6 +10,7 @@ const bodyParser    = require('body-parser');
 
 /* Rotas */
 const moviesRoutes    = require('./routes/movie');
+const rentalsRoutes   = require('./routes/rental');
 
 /* Inicialização do Express app */
 const app = express();
@@ -24,7 +25,7 @@ app.use(bodyParser.json({
 
 /* Declaracao das rotas */
 app.use('api/movies', moviesRoutes);
-
+app.use('api/rentals', rentalsRoutes);
 
 app.all('*', (req, res) => {
     res.status(404).send({
@@ -32,3 +33,5 @@ app.all('*', (req, res) => {
         status: '404'
     })
 });
+
+module.exports = app;
