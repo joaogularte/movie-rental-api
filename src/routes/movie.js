@@ -1,17 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const MovieController = require('../controllers/MovieController');
 
-router.get('/', (req, res) => {
+router.get('/', MovieController.list);
 
-});
+router.post('/', MovieController.post);
 
-router.post('/', (req, res) => {
-
-});
-
-router.get('/:id', (req, res) => {
-
-});
+router.get('/:id', MovieController.get);
 
 router.put('/:id', (req, res) => {
 
