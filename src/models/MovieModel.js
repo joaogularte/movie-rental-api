@@ -11,13 +11,14 @@ class MovieModel {
 
     static get(movieId){
         return knex
-            .select('id', 'title', 'diretor', 'quantites')
+            .select('id', 'title', 'director', 'quantities')
             .from('movies')
             .where('id', movieId);
     }
 
     static post(data){
-        return knex.from('movies').insert(data);
+        return knex('movies')
+            .insert(data);
     }
 
     static put(movieId, data){
