@@ -24,8 +24,8 @@ app.use(bodyParser.json({
 }));
 
 /* Declaracao das rotas */
-app.use('api/movies', moviesRoutes);
-app.use('api/rentals', rentalsRoutes);
+app.use('/api/movies', moviesRoutes);
+app.use('/api/rentals', rentalsRoutes);
 
 app.all('*', (req, res) => {
     res.status(404).send({
