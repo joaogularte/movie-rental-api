@@ -12,11 +12,11 @@ class MovieService {
         if(!records){
             return null
         }
-        return records;
+        return records[0];
     }
 
     static async post(data){
-        const records = await MovieModel.post(data);
+        const records = MovieModel.post(data);
         return records;
     }
 
