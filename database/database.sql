@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `movieRental`.`users`(
     `email` VARCHAR(255) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
     `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `role` ENUM('user', 'admin', 'disabled') DEFAULT 'user'
     `updateAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB;
