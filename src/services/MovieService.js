@@ -37,7 +37,7 @@ class MovieService {
             if(!movie){
                 return false;
             }
-            await MovieModel.delete(movieId).transacting(trx);
+            await MovieModel.delete(movie.id).transacting(trx);
             return true;
         })
     }
@@ -56,7 +56,7 @@ class MovieService {
             if(!movie){
                 return null;
             }
-            const records = await MovieModel.decrement(movieId).transacting(trx);
+            const records = await MovieModel.decrement(movie.id).transacting(trx);
             return records;
         })
     }
@@ -67,7 +67,7 @@ class MovieService {
             if(!movie){
                 return null;
             }
-            const records = await MovieModel.increment(movieId).transacting(trx);
+            const records = await MovieModel.increment(movie.id).transacting(trx);
             return records;
         })
     }
