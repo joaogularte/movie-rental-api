@@ -34,7 +34,7 @@ class MovieModel {
             query.update('quantities', data.quantities);
         }
 
-        return query.where('id', movieId);;
+        return query.where('id', movieId);
     }
 
     static delete(movieId){
