@@ -8,12 +8,8 @@ router.post('/', MovieController.post);
 
 router.get('/:id', MovieController.get);
 
-router.put('/:id', (req, res) => {
+router.put('/:id', MovieController.put);
 
-});
-
-router.delete('/:id', (req, res) => {
-
-});
+router.delete('/:id', MovieController.delete);
 
 module.exports = router;
