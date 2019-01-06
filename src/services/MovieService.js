@@ -20,26 +20,22 @@ class MovieService {
         return records;
     }
 
-    static put(movieId, data){
-        knex.transaction(async trx => {
-            const movie = await MovieModel.get(movieId).transacting(trx);
-            if(!movie){
-                return false;
-            }
-            await MovieModel.put(movie.id, data).transacting(trx);
-            return true;
-        })
+    static async put(movieId, data){
+        const movie = await MovieModel.get(movieId);
+        if(!movie){
+            return false;
+        }
+        const query = await MovieModel.put(movieId, data);
+        return query;
     }
     
-    static delete(movieId){
-        knex.transaction(async trx => {
-            const movie = await MovieModel.get(movieId).transacting(trx);
-            if(!movie){
-                return false;
-            }
-            await MovieModel.delete(movie.id).transacting(trx);
-            return true;
-        })
+    static async delete(movieId){
+        const movie = await MovieModel.get(movieId);
+        if(!movie){
+            return false;
+        }
+        await MovieModel.delete(movieId);
+        return true;
     }
 
     static async like(title){
