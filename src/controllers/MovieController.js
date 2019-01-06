@@ -24,21 +24,65 @@ class MovieController {
             }else{
                 res.send({
                     success: false,
-                    message: 'User not found'
+                    message: 'Movie not found'
                 })
             }
         }catch(err){
-            res.status(500).send({ success: false, message: 'Internal server failure'})
+            res.status(500).send({ success: false, message: 'Internal server failure'});
         }
     }
 
     static async post(req, res){
-        req.body.id = uuidv4();
+        const id = uuidv4();
+        req.body.id = id;
         const movie = await MovieService.post(req.body);
         res.send({
             success: true,
-            data: movie
+            data: {
+                id
+            }
         })
+    }
+
+    static async put(req, res){
+        const data = req.body;
+        const movieId = req.params.id;
+
+        try{
+            const updated = await MovieService.put(movieId, data);
+            if(updated){
+                res.send({
+                    success: true
+                })
+            }else{
+                res.send({
+                    success: false,
+                    message: 'Movie not found'
+                })
+            }
+        }catch(err){
+            res.status(500).send({ success:false, message: 'Internal server failure'});
+        }
+    }
+
+    static async delete(req, res){
+        const movieId = req.params.id;
+
+        try{
+            const deleted = await MovieService.delete(movieId);
+            if(deleted){
+                res.send({
+                    success: true
+                })
+            }else{
+                res.send({
+                    success: false,
+                    message: 'Movie not found'
+                })
+            }
+        }catch(err){
+            res.status(500).send({ success:false, message: 'Internal server failure'});
+        }
     }
 
 
