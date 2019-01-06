@@ -10,10 +10,12 @@ describe('Routes Movies', () => {
         quantities: 1
     }
 
-    beforeEach(async done => {
-        knex.from('movies').del();
-        knex.from('movies').insert(defaultMovie);
-        done();
+    beforeEach(done => {
+        knex.from('movies').del().then(() => {
+            knex.from('movies').insert(defaultMovie).then(() => {
+                done();
+            })
+        })
     });
 
     describe('Route GET /api/movies', () => {
@@ -21,7 +23,7 @@ describe('Routes Movies', () => {
             request
                 .get('/api/movies')
                 .end((err, res) => {
-
+                    
                     expect(res.body.data[0].id).to.be.eql(defaultMovie.id);
                     expect(res.body.data[0].title).to.be.eql(defaultMovie.title);
                     expect(res.body.data[0].director).to.be.eql(defaultMovie.director);
@@ -47,12 +49,12 @@ describe('Routes Movies', () => {
                 })
         })
     });
-
+/**
     describe('Route POST /api/movies', () => {
         it('should create a movie', done => {
 
             const newMovie = {
-                //id: 'd1b059e8-897d-4bdf-8a20-1fae7c1c7a8d',
+                id: 'd1b059e8-897d-4bdf-8a20-1fae7c1c7a8d',
                 title: 'New Movie',
                 director: 'Director of New Movie',
                 quantities: 1
@@ -63,14 +65,48 @@ describe('Routes Movies', () => {
                 .send(newMovie)
                 .end((err, res) => {
 
-                    //expect(res.body.data.id).to.be.eql(newMovie.id);
-                    expect(res.body.data.title).to.be.eql(newMovie.title);
-                    expect(res.body.data.director).to.be.eql(newMovie.director);
-                    expect(res.body.data.quantities).to.be.eql(newMovie.quantities);
+                    expect(res.body.data.id).to.be.eql(newMovie.id);
+                    //expect(res.body.data.title).to.be.eql(newMovie.title);
+                    //expect(res.body.data.director).to.be.eql(newMovie.director);
+                    //expect(res.body.data.quantities).to.be.eql(newMovie.quantities);
 
                     done(err);
                 })
         })
     });
+ */
+    describe('Route PUT /api/movies/{id}', () => {
+        it('should edit a movie', done => {
+            const updatedMovie = {
+                title: 'Updated Movie',
+                director: 'Director of Updated Movie',
+                quantities: 2
+            }
 
+            request
+                .put('/api/movies/d1b039e8-997b-4bdf-8a20-1fae7c1c7c0d')
+                .send(updatedMovie)
+                .end((err, res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done(err);
+                })
+        })
+    });
+
+    describe('Route DELETE /api/movies/{id}', () => {
+        it('should edit a movie', done => {
+            const updatedMovie = {
+                title: 'Updated Movie',
+                director: 'Director of Updated Movie',
+                quantities: 2
+            }
+
+            request
+                .delete('/api/movies/d1b039e8-997b-4bdf-8a20-1fae7c1c7c0d')
+                .end((err, res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done(err);
+                })
+        })
+    });
 })
