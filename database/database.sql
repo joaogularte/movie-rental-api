@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS `movieRental`.`movies`(
 CREATE TABLE IF NOT EXISTS `movieRental`.`users`(
     `id` CHAR(36) NOT NULL, 
     `name` VARCHAR(80) NOT NULL,
-    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `email` VARCHAR(80) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
-    `role` ENUM('user', 'admin', 'disabled') DEFAULT 'user',
+    `role` ENUM('user', 'admin') DEFAULT 'user',
     `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updateAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
     PRIMARY KEY(`id`)
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `movieRental`.`rentals`(
     `id` CHAR(36) NOT NULL,
     `titleMovie` VARCHAR(80) NOT NULL,
     `idUser` CHAR(36) NOT NULL,
-    `status` ENUM('RENTED','RETURNED') DEFAULT 'RENTED',
+    `status` ENUM('rented','returned') DEFAULT 'rented',
     `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updateAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY(`id`),
