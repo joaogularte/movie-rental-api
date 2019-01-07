@@ -33,15 +33,16 @@ class MovieController {
     }
 
     static async post(req, res){
-        const id = uuidv4();
-        req.body.id = id;
-        const movie = await MovieService.post(req.body);
-        res.send({
-            success: true,
-            data: {
-                id
-            }
-        })
+        try {
+            const id = await MovieService.post(req.body);
+            res.send({
+                success: true,
+                data:{ id: id}
+            })
+        } catch (err) {
+            res.status(500).send({ success: false, message: 'Internal server failure'});
+        }
+        
     }
 
     static async put(req, res){
