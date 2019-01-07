@@ -1,6 +1,13 @@
 const knex = require('../config/db');
 
 class UserModel{
+
+    static list(){
+        return knex
+            .select('id', 'name', 'email', 'password', 'role')
+            .from('users');
+    }
+
     static get(userId){
         return knex
             .select('id', 'name', 'email', 'password', 'role')

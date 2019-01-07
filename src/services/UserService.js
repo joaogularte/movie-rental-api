@@ -3,6 +3,13 @@ const uuidv4 = require('uuid/v4');
 const UserModel = require('../models/UserModel');
 
 class UserService{
+
+    static async list(){
+        const users = await UserModel.list();
+        return users;
+    }
+
+
     static async get(userId){
         const user = await UserModel.get(userId);
         if(!user){
@@ -24,7 +31,7 @@ class UserService{
             password: password,
             role: data.role
         }
-        await UserService.post(user);
+        await UserModel.post(user);
         return user.id;
     }
 

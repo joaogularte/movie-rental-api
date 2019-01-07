@@ -1,5 +1,5 @@
 const MovieService = require('../services/MovieService');
-const uuidv4 = require('uuid/v4');
+
 class MovieController {
     static async list(req, res){
         try{
