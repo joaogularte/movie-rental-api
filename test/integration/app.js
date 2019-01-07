@@ -49,32 +49,26 @@ describe('Routes Movies', () => {
                 })
         })
     });
-/**
+
     describe('Route POST /api/movies', () => {
         it('should create a movie', done => {
 
             const newMovie = {
-                id: 'd1b059e8-897d-4bdf-8a20-1fae7c1c7a8d',
                 title: 'New Movie',
                 director: 'Director of New Movie',
                 quantities: 1
             }
 
             request
-                .get('/api/movies')
+                .post('/api/movies')
                 .send(newMovie)
                 .end((err, res) => {
-
-                    expect(res.body.data.id).to.be.eql(newMovie.id);
-                    //expect(res.body.data.title).to.be.eql(newMovie.title);
-                    //expect(res.body.data.director).to.be.eql(newMovie.director);
-                    //expect(res.body.data.quantities).to.be.eql(newMovie.quantities);
-
+                    expect(res.body.success).to.be.eql(true);
                     done(err);
                 })
         })
     });
- */
+
     describe('Route PUT /api/movies/{id}', () => {
         it('should edit a movie', done => {
             const updatedMovie = {
