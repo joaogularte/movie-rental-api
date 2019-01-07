@@ -4,7 +4,7 @@ class MovieController {
     static async list(req, res){
         try{
             const movies = await MovieService.list();
-            res.send({
+            res.status(200).send({
                 success: true,
                 data: movies
             })
@@ -17,7 +17,7 @@ class MovieController {
         try{
             const movie = await MovieService.get(req.params.id);
             if(movie){
-                res.send({
+                res.status(200).send({
                     success: true,
                     data: movie
                 })
@@ -35,7 +35,7 @@ class MovieController {
     static async post(req, res){
         try {
             const id = await MovieService.post(req.body);
-            res.send({
+            res.status(201).send({
                 success: true,
                 data:{ id: id}
             })
@@ -52,11 +52,11 @@ class MovieController {
         try{
             const updated = await MovieService.put(movieId, data);
             if(updated){
-                res.send({
+                res.status(200).send({
                     success: true
                 })
             }else{
-                res.send({
+                res.status(200).send({
                     success: false,
                     message: 'Movie not found'
                 })
@@ -72,11 +72,11 @@ class MovieController {
         try{
             const deleted = await MovieService.delete(movieId);
             if(deleted){
-                res.send({
+                res.status(200).send({
                     success: true
                 })
             }else{
-                res.send({
+                res.status(200).send({
                     success: false,
                     message: 'Movie not found'
                 })
