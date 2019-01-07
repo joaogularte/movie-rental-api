@@ -1,3 +1,4 @@
+const uuidv4 = require('uuid/v4');
 const knex = require('../config/db');
 const MovieModel = require('../models/MovieModel');
 
@@ -16,8 +17,15 @@ class MovieService {
     }
 
     static async post(data){
-        const records = MovieModel.post(data);
-        return records;
+        const id = uuidv4();
+        const movie = {
+            id: id,
+            title: data.title,
+            director: data.director,
+            quantities: data.quantities
+        }
+        MovieModel.post(movie);
+        return movie.id;
     }
 
     static async put(movieId, data){
