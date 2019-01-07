@@ -24,7 +24,7 @@ class MovieService {
             director: data.director,
             quantities: data.quantities
         }
-        MovieModel.post(movie);
+        await MovieModel.post(movie);
         return movie.id;
     }
 
