@@ -33,8 +33,8 @@ class MovieService {
         if(!movie){
             return false;
         }
-        const query = await MovieModel.put(movieId, data);
-        return query;
+        await MovieModel.put(movieId, data);
+        return true;
     }
     
     static async delete(movieId){
