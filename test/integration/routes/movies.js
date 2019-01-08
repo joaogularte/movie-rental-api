@@ -63,7 +63,7 @@ describe('Routes Movies', () => {
                 .post('/api/movies')
                 .send(newMovie)
                 .end((err, res) => {
-                    expect(res.body.success).to.be.eql(true);
+                    expect(res.body.data.id).to.have.lengthOf(36);
                     done(err);
                 })
         })
@@ -88,12 +88,7 @@ describe('Routes Movies', () => {
     });
 
     describe('Route DELETE /api/movies/{id}', () => {
-        it('should edit a movie', done => {
-            const updatedMovie = {
-                title: 'Updated Movie',
-                director: 'Director of Updated Movie',
-                quantities: 2
-            }
+        it('should delete a movie', done => {
 
             request
                 .delete('/api/movies/d1b039e8-997b-4bdf-8a20-1fae7c1c7c0d')
