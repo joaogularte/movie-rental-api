@@ -25,7 +25,7 @@ class MovieService {
             quantities: data.quantities
         }
         await MovieModel.post(movie);
-        return movie.id;
+        return { id: movie.id };
     }
 
     static async put(movieId, data){

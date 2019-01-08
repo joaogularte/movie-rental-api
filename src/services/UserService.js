@@ -32,7 +32,7 @@ class UserService{
             role: data.role
         }
         await UserModel.post(user);
-        return user.id;
+        return { id: user.id };
     }
 
     static async put(userId, data){
@@ -40,7 +40,15 @@ class UserService{
         if(!user){
             return false;
         }
-        await UserModel.put(userId, data);
+        const salt = bcrypt.genSaltSync();
+        const password = bcrypt.hashSync(data.password, salt);
+        const updatedUser = {
+            name: data.name,
+            email: data.email,
+            password: password,
+            role: data.role
+        }
+        await UserModel.put(userId, updatedUser);
         return true;
     }
 
