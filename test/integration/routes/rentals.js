@@ -96,5 +96,34 @@ describe('Routes Rentals', () => {
         })
     });
 
+    describe('Route PUT /api/rentals/{id}', () => {
+        it('should edit a rental', done => {
+            
+            const updatedRental = {
+                status: 'returned'
+            }
+
+            request
+                .put('/api/rentals/14dbd0cf-56fd-46f8-a5eb-971c844f0024')
+                .send(updatedRental)
+                .end((err, res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done(err);
+                })
+        })
+    });
+
+    describe('Route DELETE /api/rentals/{id}', () => {
+        it('should delete a rental', done => {
+
+            request
+                .delete('/api/rentals/14dbd0cf-56fd-46f8-a5eb-971c844f0024')
+                .end((err, res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done(err);
+                })
+        })
+    });
+
 
 })

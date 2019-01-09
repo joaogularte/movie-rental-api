@@ -11,11 +11,17 @@ describe('Routes Movies', () => {
     }
 
     beforeEach(done => {
-        knex.from('movies').del().then(() => {
-            knex.from('movies').insert(defaultMovie).then(() => {
+        knex.from('movies').insert(defaultMovie)
+            .then(() => {
                 done();
             })
-        })
+    });
+
+    afterEach(done => {
+        knex.from('movies').del()
+            .then(() => {
+                done();
+            });
     });
 
     describe('Route GET /api/movies', () => {

@@ -10,14 +10,19 @@ describe('Routes Users', () => {
     }
 
     beforeEach(done => {
-        knex.from('users').del().then(() => {
-            UserService.post(defaultUser)
-                .then((userId) => {
-                    defaultUser.id = userId.id;
-                    done()
-                });
-        })
+        UserService.post(defaultUser)
+            .then((userId) => {
+                defaultUser.id = userId.id;
+                done()
+            });
     });
+
+    afterEach(done => {
+        knex.from('users').del()
+            .then(() => {
+                done();
+            });
+    })
 
     describe('Route GET /api/users', () => {
         it('should return a list of users', done => {
