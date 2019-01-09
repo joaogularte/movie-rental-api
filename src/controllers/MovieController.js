@@ -14,7 +14,6 @@ class MovieController {
     static async get(req, res) {
         try {
             const movie = await MovieService.get(req.params.id);
-            console.log(movie);
             if (movie) {
                 res.status(200).send({ success: true, data: movie })
             } else {
