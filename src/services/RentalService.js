@@ -13,7 +13,7 @@ class RentalService {
 
     static async get(rentalId){
         const rentals = await RentalModel.get(rentalId);
-        if(!rentals){
+        if(!rentals[0]){
             return null;
         }
         return rentals[0];

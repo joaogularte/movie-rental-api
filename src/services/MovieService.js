@@ -11,7 +11,7 @@ class MovieService {
 
     static async get(movieId){
         const records = await MovieModel.get(movieId);
-        if(!records){
+        if(!records[0]){
             return null
         }
         return records[0];
@@ -31,7 +31,7 @@ class MovieService {
 
     static async put(movieId, data){
         const movie = await MovieModel.get(movieId);
-        if(!movie){
+        if(!movie[0]){
             return false;
         }
         await MovieModel.put(movieId, data);
@@ -40,7 +40,7 @@ class MovieService {
     
     static async delete(movieId){
         const movie = await MovieModel.get(movieId);
-        if(!movie){
+        if(!movie[0]){
             return false;
         }
         await MovieModel.delete(movieId);
@@ -49,32 +49,29 @@ class MovieService {
 
     static async like(title){
         const records = await MovieModel.like(title);
-        if(!records){
+        if(!records[0]){
             return null
         }
         return records;
     }
 
-    static decrement(movieId){
-        knex.transaction(async trx => {
-            const movie = await MovieModel.get(movieId).transacting(trx);
-            if(!movie){
-                return null;
-            }
-            const records = await MovieModel.decrement(movie.id).transacting(trx);
-            return records;
-        })
+    static async decrement(movieId){
+        const movie = await MovieModel.get(movieId)
+        if(!movie[0]){
+            return null;
+        }
+        const records = await MovieModel.decrement(movieId);
+        return records;
     }
 
-    static increment(movieId){
-        knex.transaction(async trx => {
-            const movie = await MovieModel.get(movieId).transacting(trx);
-            if(!movie){
-                return null;
-            }
-            const records = await MovieModel.increment(movie.id).transacting(trx);
-            return records;
-        })
+    static async increment(movieId){
+        const movie = await MovieModel.get(movieId);
+        if(!movie[0]){
+            return null;
+        }
+        const records = await MovieModel.increment(movieId);
+        return records;
+    
     }
 }
 

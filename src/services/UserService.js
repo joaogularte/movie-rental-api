@@ -12,7 +12,7 @@ class UserService{
 
     static async get(userId){
         const user = await UserModel.get(userId);
-        if(!user){
+        if(!user[0]){
             return null
         }
         return user[0];
@@ -37,7 +37,7 @@ class UserService{
 
     static async put(userId, data){
         const user = await UserModel.get(userId);
-        if(!user){
+        if(!user[0]){
             return false;
         }
         const salt = bcrypt.genSaltSync();
@@ -54,7 +54,7 @@ class UserService{
 
     static async delete(userId){
         const user = await UserModel.get(userId);
-        if(!user){
+        if(!user[0]){
             return false;
         }
         await UserModel.delete(userId);
@@ -63,7 +63,7 @@ class UserService{
 
     static async isPassword(userId, password){
         const user = await UserModel.get(userId);
-        if(!user){
+        if(!user[0]){
             return false;
         }
 
