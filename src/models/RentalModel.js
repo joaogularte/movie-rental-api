@@ -4,17 +4,17 @@ const rentalStatus = require('./status/rental.json');
 class RentalModel{
     static list(){
         return knex
-                .select('id', 'titleMovie', 'user.name', 'user.email', 'status')
+                .select('rentals.id', 'titleMovie', 'users.name', 'users.email', 'status')
                 .from('rentals')
                 .innerJoin('users', 'rentals.idUser', 'users.id');
     }
 
     static get(rentalId){
         return knex
-                .select('id', 'titleMovie', 'user.name', 'user.email')
+                .select('rentals.id', 'titleMovie', 'users.name', 'users.email', 'status')
                 .from('rentals')
                 .innerJoin('users', 'rentals.idUser', 'users.id')
-                .where('id', rentalId);
+                .where('rentals.id', rentalId);
     }
 
     static post(data){

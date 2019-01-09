@@ -53,15 +53,22 @@ class MovieModel {
              .where('title', 'like', title);
     }
 
-    static decrement(movieId){
+    static getByTitle(title){
+        return knex
+            .select('title', 'quantities')
+            .from('movies')
+            .where('title', title);
+    }
+
+    static decrement(title){
         return knex('movies')
-            .where('id', movieId)
+            .where('title', title)
             .decrement('quantities', 1);
     }
 
-    static increment(movieId){
+    static increment(title){
         return knex('movies')
-            .where('id', movieId)
+            .where('title', title)
             .increment('quantities', 1);
     }
 

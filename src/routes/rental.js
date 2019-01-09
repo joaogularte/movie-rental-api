@@ -1,25 +1,16 @@
 const express   = require('express');
 const router    = express.Router();
+const RentalController = require('../controllers/RentalController');
 
-router.get('/', (req, res) => {
+router.get('/', RentalController.list);
 
-});
+router.post('/', RentalController.post);
 
-router.post('/', (req, res) => {
+router.get('/:id', RentalController.get);
 
-});
+router.put('/:id', RentalController.put);
 
-router.get('/:id', (req, res) => {
-
-});
-
-router.put('/:id', (req, res) => {
-
-});
-
-router.delete('/:id', (req, res) => {
-
-});
+router.delete('/:id', RentalController.delete);
 
 
 module.exports = router;

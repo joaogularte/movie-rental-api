@@ -1,45 +1,71 @@
+const uuidv4 = require('uuid/v4');
+
 const knex = require('../config/db');
 const RentalModel = require('../models/RentalModel');
+const UserModel = require('../models/UserModel');
+const MovieModel = require('../models/MovieModel');
 
 class RentalService {
     static async list(){
-        const records = await RentalModel.list();
-        return records;
+        const rentals = await RentalModel.list();
+        return rentals;
     }
 
     static async get(rentalId){
-        const records = await RentalModel.get(rentalId);
-        if(!records){
+        const rentals = await RentalModel.get(rentalId);
+        if(!rentals){
             return null;
         }
-        return records;
+        return rentals[0];
     }
 
     static async post(data){
-        const records = await RentalModel.post(data);
-        return records;
+        
+        const user = await UserModel.get(data.idUser);
+        if (!user[0]) {
+            return { success: false, message: 'User not found' }
+        }
+        const movie = await MovieModel.getByTitle(data.titleMovie);
+        
+        if (!movie[0]) {
+            return { success: false, message: 'Movie not found' };
+        }
+        if (movie[0].quantities < 1){
+            return { success: false, message: 'Movie not available' }
+        }
+
+        await MovieModel.decrement(data.titleMovie);
+        const id = uuidv4();
+        const rental = {
+            id: id,
+            titleMovie: data.titleMovie,
+            idUser: data.idUser,
+            status: data.status
+        }
+        
+        await RentalModel.post(rental);
+        return { success: true, data: { id: rental.id } };
     }
 
     static async put(rentalId, data){
-        knex.transaction(async trx => {
-            const rental = await RentalModel.get(rentalId).transacting(trx);
-            if(!rental){
-                return false;
-            }
-            await RentalModel.put(rental.id, data).transacting(trx);
-            return true;
-        })
+        
+        const rental = await RentalModel.get(rentalId);
+        if(!rental[0]){
+            return false;
+        }
+        await MovieModel.increment(rental[0].titleMovie);
+        await RentalModel.put(rentalId, data);
+        return true;
+    
     }
 
     static async delete(rentalId){
-        knex.transaction(async trx => {
-            const rental = await RentalModel.get(rentalId).transacting(trx);
-            if(!rental){
-                return false;
-            }
-            await RentalModel.delete(rental.id).transacting(trx);
-            return true;
-        })
+        const rental = await RentalModel.get(rentalId);
+        if(!rental[0]){
+            return false;
+        }
+        await RentalModel.delete(rentalId);
+        return true;
     }
 }
 

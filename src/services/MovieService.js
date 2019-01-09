@@ -1,5 +1,6 @@
 const uuidv4 = require('uuid/v4');
 const knex = require('../config/db');
+
 const MovieModel = require('../models/MovieModel');
 
 class MovieService {
