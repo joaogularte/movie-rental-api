@@ -3,6 +3,9 @@ const UserService = require('../services/UserService');
 const errorResponse = { success: false, message: 'Internal server failure' };
 
 class UserController {
+   /**
+   * Retorna uma lista todos os usuarios 
+   */
   static async list(req, res) {
     try {
       const users = await UserService.list();
@@ -12,6 +15,10 @@ class UserController {
     }
   }
 
+  /**
+   * Retorna um usuario, onde o id do usario for igual ao parametro userID,
+   * Caso o usuario não exista retorne User not found
+   */
   static async get(req, res) {
     try {
       const userId = req.joi.params.id;
@@ -26,6 +33,9 @@ class UserController {
     }
   }
 
+  /**
+   * Adicionada um usuario 
+   */
   static async post(req, res) {
     try {
       const user = req.joi.body;
@@ -36,6 +46,10 @@ class UserController {
     }
   }
 
+  /**
+   * Altera o usuario que tiver o id igual ao paremetro userId,
+   * Caso o usuario não exista retorne User not found
+   */
   static async put(req, res) {
     try {
       const userId = req.joi.params.id;
@@ -52,6 +66,10 @@ class UserController {
     }
   }
 
+   /**
+   * Deleta o usuario que tiver o id igual ao paremetro userId,
+   * Caso o usuario não exista retorne User not found
+   */
   static async delete(req, res) {
     try {
       const userId = req.joi.params.id;

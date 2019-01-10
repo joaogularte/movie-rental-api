@@ -18,7 +18,8 @@ class MovieController {
   }
 
   /**
-   * Retorna um filme, onde o id do filme for igual ao parametro movieId 
+   * Retorna um filme, onde o id do filme for igual ao parametro movieId,
+   * Caso o filme não exista retorne Movie not found
    */
   static async get(req, res) {
     try {
@@ -48,7 +49,8 @@ class MovieController {
   }
 
   /**
-   * Altera o filme que tiver o id igual ao paremetro movieId 
+   * Altera o filme que tiver o id igual ao paremetro movieId,
+   * Caso o filme não exista retorne Movie not found
    */
   static async put(req, res) {
     try {
@@ -66,7 +68,8 @@ class MovieController {
   }
 
   /**
-   * Excluí o filme que tiver o id igual ao paremetro movieId 
+   * Excluí o filme que tiver o id igual ao paremetro movieId,
+   * Caso o filme não exista retorne Movie not found
    */
   static async delete(req, res) {
     try {

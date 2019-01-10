@@ -55,7 +55,7 @@ class MovieModel {
   }
 
   /**
-   * Realiza delte do registro da tabela movies
+   * Realiza delete do registro da tabela movies
    * onde movieId for igual a coluna id
    */
   static delete(movieId) {
