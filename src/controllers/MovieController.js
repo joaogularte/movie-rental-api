@@ -2,15 +2,24 @@ const MovieService = require('../services/MovieService');
 const responseError = require('./helpers');
 
 class MovieController {
+
+  /**
+   * Retorna uma lista todos os filmes, ou, se o parametro title for passado via query,
+   * retorna o(s) filme(s), onde o title do filme for igual ao parametro passado 
+   */
   static async list(req, res) {
     try {
-      const movies = await MovieService.list();
+      const title = req.joi.params.title;
+      const movies = await MovieService.list(title);
       res.status(200).send({ success: true, data: movies });
     } catch (err) {
       res.status(500).send(responseError);
     }
   }
 
+  /**
+   * Retorna um filme, onde o id do filme for igual ao parametro movieId 
+   */
   static async get(req, res) {
     try {
       const movieId = req.joi.params.id;
@@ -25,6 +34,9 @@ class MovieController {
     }
   }
 
+  /**
+   * Adicionada um filme 
+   */
   static async post(req, res) {
     try {
       const movie = req.joi.body;
@@ -35,6 +47,9 @@ class MovieController {
     }
   }
 
+  /**
+   * Altera o filme que tiver o id igual ao paremetro movieId 
+   */
   static async put(req, res) {
     try {
       const movieId = req.joi.params.id;
@@ -50,6 +65,9 @@ class MovieController {
     }
   }
 
+  /**
+   * Excluí o filme que tiver o id igual ao paremetro movieId 
+   */
   static async delete(req, res) {
     try {
       const movieId = req.joi.params.id;

@@ -11,7 +11,13 @@ class MovieSchema extends Schema {
     return this.validate(data, schema);
   }
 
-  static list() {
+  static list(data) {
+    const schema = {
+      query: Joi.object({
+        title: Joi.string().trim(),
+      }),
+    };
+    return this.validate(data, schema);
   }
 
   static post(data) {

@@ -2,6 +2,7 @@ const knex = require('../config/db');
 const rentalStatus = require('./status/rental.json');
 
 class RentalModel {
+  /* Metodos Padrões */
   static list() {
     return knex
       .select('rentals.id', 'titleMovie', 'users.name', 'users.email', 'status')
