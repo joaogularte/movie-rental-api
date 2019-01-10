@@ -1,4 +1,4 @@
-/* Arquivo de configuração para o JWT*/
+/* Arquivo de configuração para o JWT */
 module.exports = {
   jwtSecret: 'S3cr3t',
   jwtSession: { session: false },

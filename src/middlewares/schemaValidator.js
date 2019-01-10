@@ -2,7 +2,7 @@ module.exports = (Schema, method) => (req, res, next) => {
   const data = {
     params: req.params,
     body: req.body,
-    query: req.query
+    query: req.query,
   };
 
   const validation = Schema[method](data);
@@ -11,7 +11,7 @@ module.exports = (Schema, method) => (req, res, next) => {
     req.joi = {
       body: validation.value.body || {},
       params: validation.value.params || {},
-      query: validation.value.query || {}
+      query: validation.value.query || {},
     };
     next();
   } else {

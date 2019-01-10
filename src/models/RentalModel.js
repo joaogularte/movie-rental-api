@@ -29,6 +29,7 @@ class RentalModel {
       .innerJoin('users', 'rentals.idUser', 'users.id')
       .where('rentals.id', rentalId);
   }
+
   /**
    * Realiza insert de registros na tabela rentals
    */
@@ -36,7 +37,7 @@ class RentalModel {
     return knex.from('rentals').insert(data);
   }
 
-   /**
+  /**
    * Realiza update do registro da tabela rentals
    * onde rentalId for igual a coluna id
    */

@@ -19,8 +19,8 @@ describe('Services Movies', () => {
   const newMovie = [{
     title: 'New Movie',
     director: 'Director of New Movie',
-    quantities: 1
-  }]
+    quantities: 1,
+  }];
 
   beforeEach((done) => {
     knex.from('movies').del().then(() => {

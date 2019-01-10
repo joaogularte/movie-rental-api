@@ -3,24 +3,24 @@ const uuidv4 = require('uuid/v4');
 const MovieModel = require('../models/MovieModel');
 
 class MovieService {
-
   /**
    * Retorna uma lista de rodos os filmes.
    * Se o parametro title exisir retorna os titulos como title
-   * Caso title nao exista, retorna a lista de todos os filmes 
+   * Caso title nao exista, retorna a lista de todos os filmes
    */
   static async list(title) {
-    if(title){
-      const records = await MovieModel.like(title);
-    }else{
-      const records = await MovieModel.list();
+    let records;
+    if (title) {
+      records = await MovieModel.like(title);
+    } else {
+      records = await MovieModel.list();
     }
     return records;
   }
 
   /**
    * Retorna o filme que tiver o id igual a movieId.
-   * Caso o filme não exista, retorna null 
+   * Caso o filme não exista, retorna null
    */
   static async get(movieId) {
     const records = await MovieModel.get(movieId);
@@ -32,7 +32,7 @@ class MovieService {
 
   /**
    * Inseri um novo filme, abribuindo um numero uuid ao id do filme inserido.
-   * Retorna o id do filme inserido 
+   * Retorna o id do filme inserido
    */
   static async post(data) {
     const id = uuidv4();

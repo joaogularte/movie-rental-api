@@ -12,7 +12,6 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
 
 
 module.exports = () => {
-  
   /* Criacao da autenticação */
   const strategy = new Strategy(opts, async (payload, done) => {
     const user = await User.get(payload.id);

@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS `movieRental`
     DEFAULT CHARACTER SET utf8
     DEFAULT COLLATE utf8_general_ci;
 
+use `movieRental`;
+
 CREATE TABLE IF NOT EXISTS `movieRental`.`movies`(
     `id` CHAR (36) NOT NULL,
     `title` VARCHAR (80) NOT NULL UNIQUE,
@@ -34,3 +36,5 @@ CREATE TABLE IF NOT EXISTS `movieRental`.`rentals`(
     FOREIGN KEY (`idUser`) REFERENCES `users`(`id`),
     FOREIGN KEY (`titleMovie`) REFERENCES `movies`(`title`)
 ) ENGINE = InnoDB;
+
+INSERT INTO `movieRental`.`users` (`id`, `name`, `email`, `password`) VALUES ('62267e26-1f23-4983-9131-95dd6d301893', 'John Doe', 'johndoe@email.com', '$2a$10$oFbjTxlnwEDxJSVWXjYpKOKrFTGaxXWoinTLo0fuP8zSh3qX9ty7q');

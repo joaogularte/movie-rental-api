@@ -2,8 +2,8 @@ const RentalService = require('../services/RentalService');
 const responseError = require('./helpers');
 
 class RentalController {
-   /**
-   * Retorna uma lista todos os alugueis 
+  /**
+   * Retorna uma lista todos os alugueis
    */
   static async list(req, res) {
     try {
@@ -34,7 +34,7 @@ class RentalController {
   }
 
   /**
-   * Adicionada um aluguel 
+   * Adicionada um aluguel
    */
   static async post(req, res) {
     try {

@@ -13,7 +13,7 @@ class UserService {
 
   /**
    * Retorna o usuario que tiver o id igual a userId.
-   * Caso o usuario não exista, retorna null 
+   * Caso o usuario não exista, retorna null
    */
   static async get(userId) {
     const user = await UserModel.get(userId);
@@ -26,7 +26,7 @@ class UserService {
   /**
    * Inseri um novo usuario, abribuindo um numero uuid ao id do usuario inserido, assim como,
    * realiza a criptação da senha
-   * Retorna o id do usuario inserido 
+   * Retorna o id do usuario inserido
    */
   static async post(data) {
     const id = uuidv4();
@@ -44,7 +44,7 @@ class UserService {
     return { id: user.id };
   }
 
-   /**
+  /**
    * Altera o usuario que tiver o id igual a userId e retorna true,
    * Caso o usuario não exista, retorna false;
    */
@@ -94,7 +94,7 @@ class UserService {
 
   /**
    * Retorna o usuario que tiver o email igual a emailUser.
-   * Caso o usuario não exista, retorna null 
+   * Caso o usuario não exista, retorna null
    */
   static async getByEmail(emailUser) {
     const user = await UserModel.getByEmail(emailUser);

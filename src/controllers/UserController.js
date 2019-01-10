@@ -3,8 +3,8 @@ const UserService = require('../services/UserService');
 const errorResponse = { success: false, message: 'Internal server failure' };
 
 class UserController {
-   /**
-   * Retorna uma lista todos os usuarios 
+  /**
+   * Retorna uma lista todos os usuarios
    */
   static async list(req, res) {
     try {
@@ -34,7 +34,7 @@ class UserController {
   }
 
   /**
-   * Adicionada um usuario 
+   * Adicionada um usuario
    */
   static async post(req, res) {
     try {
@@ -66,7 +66,7 @@ class UserController {
     }
   }
 
-   /**
+  /**
    * Deleta o usuario que tiver o id igual ao paremetro userId,
    * Caso o usuario não exista retorne User not found
    */

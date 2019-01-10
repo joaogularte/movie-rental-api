@@ -1,8 +1,7 @@
 const knex = require('../config/db');
 
 class UserModel {
-
-   /**
+  /**
    * Retorna todos os registros com as colunas
    * id, name, email, password da tabela users
    */

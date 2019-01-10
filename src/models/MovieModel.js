@@ -32,7 +32,7 @@ class MovieModel {
   static post(data) {
     return knex('movies')
       .insert(data);
-  } 
+  }
 
   /**
    * Realiza update do registro da tabela movies
@@ -94,6 +94,7 @@ class MovieModel {
       .where('title', title)
       .decrement('quantities', 1);
   }
+
   /**
    * Incrementa o campo quantities da tabela movies onde o
    * parametro title for igual a coluna title,

@@ -15,7 +15,7 @@ class RentalService {
 
   /**
    * Retorna o alguel que tiver o id igual a rentalId.
-   * Caso o alguel não exista, retorna null 
+   * Caso o alguel não exista, retorna null
    */
   static async get(rentalId) {
     const rentals = await RentalModel.get(rentalId);
@@ -24,12 +24,13 @@ class RentalService {
     }
     return rentals[0];
   }
+
   /**
    * Inseri um novo aluguel, abribuindo um numero uuid ao id do aluguel inserido, assim como,
    * Retorna o id do usuario inserido,
    * Caso o user relacionado ao aluguel nao exista, retorna User not found
    * Caso o movie relacionado ao alguel nao exista, retorna Movie not found
-   * Caso o movie relacionado ao aluguel nao esteja disponivel, retorna Movie not available 
+   * Caso o movie relacionado ao aluguel nao esteja disponivel, retorna Movie not available
    */
   static async post(data) {
     const user = await UserModel.get(data.idUser);

@@ -109,6 +109,8 @@ caso o filme não seja encontrado o seguinte JSON será retornado:
 
 { success: false, message: 'Movie not found' }
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
 Recurso /api/users esta relacionado a users
 
 GET -> /api/users - Retorna um JSON com a seguinte estrutura: 
@@ -184,6 +186,8 @@ DELETE -> /api/users/:id - O parametro desta rota deve ser um uuid. Este recurso
 caso o usuario não seja encontrado o seguinte JSON será retornado: 
 
 { success: false, message: 'User not found' }
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 Recurso /api/rentals esta relacionado a rentals:
 
