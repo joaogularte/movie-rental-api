@@ -7,6 +7,8 @@ Movie-rental-api criada para o desafio proposto pela 4all.
 /api/movies
 /api/rentals
 
+Antes de começar favor ser docs/webserviceEspc
+
 ### Primeiros passos: instalando os pacotes e rodando o app com pm2
 ```sh
 npm install
