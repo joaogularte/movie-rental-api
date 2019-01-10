@@ -8,7 +8,9 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-integration": "mocha --opts test/integration/mocha.opts test/integration/**/*.js",
-    "test-unit": "mocha --opts test/unit/mocha.opts test/unit/**/*.js"
+    "test-unit": "mocha --opts test/unit/mocha.opts test/unit/**/*.js",
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,11 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.3",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
     "supertest": "^3.3.0"

@@ -1,15 +1,18 @@
 const express = require('express');
+
 const router = express.Router();
 const MovieController = require('../controllers/MovieController');
+const MovieSchema = require('./schemas/MovieSchema');
+const schemaValidator = require('../middlewares/schemaValidator');
 
 router.get('/', MovieController.list);
 
-router.post('/', MovieController.post);
+router.post('/', schemaValidator(MovieSchema, 'post'), MovieController.post);
 
-router.get('/:id', MovieController.get);
+router.get('/:id', schemaValidator(MovieSchema, 'get'), MovieController.get);
 
-router.put('/:id', MovieController.put);
+router.put('/:id', schemaValidator(MovieSchema, 'put'), MovieController.put);
 
-router.delete('/:id', MovieController.delete);
+router.delete('/:id', schemaValidator(MovieSchema, 'delete'), MovieController.delete);
 
 module.exports = router;

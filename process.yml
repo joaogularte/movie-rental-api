@@ -1,5 +1,5 @@
-app:
-  - script   : 'src/app.js'
-    name     : 'app'
+apps:
+  - script   : './index.js'
+    name     : 'movie-rental'
     exec_mode: 'cluster'
     instances: 1

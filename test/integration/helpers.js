@@ -1,6 +1,6 @@
 const supertest = require('supertest');
-const chai      = require('chai');
-const app       = require('../../src/app');
+const chai = require('chai');
+const app = require('../../src/app');
 
 global.app = app;
 global.expect = chai.expect;

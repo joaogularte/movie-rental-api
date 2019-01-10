@@ -43,13 +43,12 @@ class UserModel {
   }
 
   /* Metodos Extras */
-  static getByEmail(userEmail){
+  static getByEmail(userEmail) {
     return knex
       .select('id')
       .from('users')
       .where('email', userEmail);
   }
-
 }
 
 module.exports = UserModel;

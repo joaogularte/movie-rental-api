@@ -1,16 +1,19 @@
-const express   = require('express');
-const router    = express.Router();
+const express = require('express');
+
+const router = express.Router();
 const RentalController = require('../controllers/RentalController');
+const RentalSchema = require('./schemas/RentalSchema');
+const schemaValidator = require('../middlewares/schemaValidator');
 
 router.get('/', RentalController.list);
 
-router.post('/', RentalController.post);
+router.post('/', schemaValidator(RentalSchema, 'post'), RentalController.post);
 
-router.get('/:id', RentalController.get);
+router.get('/:id', schemaValidator(RentalSchema, 'get'), RentalController.get);
 
-router.put('/:id', RentalController.put);
+router.put('/:id', schemaValidator(RentalSchema, 'put'), RentalController.put);
 
-router.delete('/:id', RentalController.delete);
+router.delete('/:id', schemaValidator(RentalSchema, 'delete'), RentalController.delete);
 
 
 module.exports = router;
