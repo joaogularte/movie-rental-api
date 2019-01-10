@@ -4,7 +4,7 @@ class UserModel {
 
    /**
    * Retorna todos os registros com as colunas
-   * id, name, email, password da coluna users
+   * id, name, email, password da tabela users
    */
   static list() {
     return knex

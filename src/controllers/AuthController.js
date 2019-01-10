@@ -2,6 +2,9 @@ const AuthService = require('../services/AuthService');
 const responseError = require('./helpers');
 
 class AuthController {
+  /**
+   * Cria um JWT para autenticação
+   */
   static async post(req, res) {
     try {
       const credentials = req.joi.body;

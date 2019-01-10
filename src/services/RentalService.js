@@ -5,11 +5,18 @@ const UserModel = require('../models/UserModel');
 const MovieModel = require('../models/MovieModel');
 
 class RentalService {
+  /**
+   * Retorna uma lista de rodos os alugueis.
+   */
   static async list() {
     const rentals = await RentalModel.list();
     return rentals;
   }
 
+  /**
+   * Retorna o alguel que tiver o id igual a rentalId.
+   * Caso o alguel não exista, retorna null 
+   */
   static async get(rentalId) {
     const rentals = await RentalModel.get(rentalId);
     if (!rentals[0]) {
@@ -17,7 +24,13 @@ class RentalService {
     }
     return rentals[0];
   }
-
+  /**
+   * Inseri um novo aluguel, abribuindo um numero uuid ao id do aluguel inserido, assim como,
+   * Retorna o id do usuario inserido,
+   * Caso o user relacionado ao aluguel nao exista, retorna User not found
+   * Caso o movie relacionado ao alguel nao exista, retorna Movie not found
+   * Caso o movie relacionado ao aluguel nao esteja disponivel, retorna Movie not available 
+   */
   static async post(data) {
     const user = await UserModel.get(data.idUser);
     if (!user[0]) {
@@ -45,6 +58,10 @@ class RentalService {
     return { success: true, data: { id: rental.id } };
   }
 
+  /**
+   * Altera o aluguel que tiver o id igual a rentalId e retorna true,
+   * Caso o aluguel não exista, retorna false;
+   */
   static async put(rentalId, data) {
     const rental = await RentalModel.get(rentalId);
     if (!rental[0]) {
@@ -55,6 +72,10 @@ class RentalService {
     return true;
   }
 
+  /**
+   * Deleta o aluguel que tiver o id igual a rentalId e retorna true,
+   * Caso o aluguel não exista, retorna false;
+   */
   static async delete(rentalId) {
     const rental = await RentalModel.get(rentalId);
     if (!rental[0]) {

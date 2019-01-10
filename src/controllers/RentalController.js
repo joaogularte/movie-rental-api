@@ -2,6 +2,9 @@ const RentalService = require('../services/RentalService');
 const responseError = require('./helpers');
 
 class RentalController {
+   /**
+   * Retorna uma lista todos os alugueis 
+   */
   static async list(req, res) {
     try {
       const rentals = await RentalService.list();
@@ -11,6 +14,10 @@ class RentalController {
     }
   }
 
+  /**
+   * Retorna um aluguel, onde o id do aluguel for igual ao parametro rentalId,
+   * Caso o aluguel não exista retorne Rental not found
+   */
   static async get(req, res) {
     try {
       const rentalId = req.joi.params.id;
@@ -26,6 +33,9 @@ class RentalController {
     }
   }
 
+  /**
+   * Adicionada um aluguel 
+   */
   static async post(req, res) {
     try {
       const rental = req.joi.body;
@@ -40,6 +50,10 @@ class RentalController {
     }
   }
 
+  /**
+   * Altera o alguel que tiver o id igual ao paremetro rentalId,
+   * Caso o alguel não exista retorne Rental not found
+   */
   static async put(req, res) {
     try {
       const rentalId = req.joi.params.id;
@@ -55,6 +69,10 @@ class RentalController {
     }
   }
 
+  /**
+   * Deleta o aluguel que tiver o id igual ao paremetro rentalId,
+   * Caso o aluguel não exista retorne Rental not found
+   */
   static async delete(req, res) {
     try {
       const rentalId = req.joi.params.id;

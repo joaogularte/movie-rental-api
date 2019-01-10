@@ -1,3 +1,4 @@
+/* Configuração e inicialização do banco de dados */
 const config = {
   client: process.env.DB_CLIENT,
   connection: {

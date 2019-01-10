@@ -3,6 +3,9 @@ const UserService = require('./UserService');
 const secret = require('../config/secret');
 
 class AuthService {
+  /**
+   * Cria um JWT para autenticação
+   */
   static async post(credentials) {
     const email = credentials.email;
     const password = credentials.password;

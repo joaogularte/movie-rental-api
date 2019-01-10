@@ -1,0 +1,274 @@
+A API disponibiliza quatro recursos:
+
+/api/movies
+/api/rentals
+/api/users
+/api/token
+
+
+Recurso /api/token esta relacionado ao token de acesso a api.
+
+POST -> /api/token - Para ser gerado o token de acesso a aplicação o seguinte JSON deve ser enviado: 
+{
+    email: string,
+    password: string
+}
+
+onde o email e o password são de usuario já cadastrados.
+
+o retorno desta rota será o seguinte JSON:
+{ success: true, data: auth }
+
+onde auth será o token JWT.
+
+Todas as rotas da api, exceto a rota /api/token, precisam ser autenticadas, para isso é necessario que seja gerado atraves da rota descrita acima
+E no cabecalho de cada requisição ser setado o campo Authorization com o valor "JWT + token".
+
+Recurso /api/movies esta relacionado a movies.
+
+GET -> /api/movies - Retorna um JSON com a seguinte estrutura: 
+{   
+    success: true,
+    data: [{
+        id: uuid,
+        title: string,
+        director: string,
+        quantities: int
+    }]
+}
+
+ou 
+
+{ success: true, data: [] }
+
+Caso não tenha nenhum filme inserido.
+
+O JSON quando ocorrer um 'Internal server failure' sempre terá esta estrutura:
+{ success: false, message: 'Internal server failure' }
+
+
+É possivel passar uma query string chamado title, ela não é obrigatoria, caso seja necessario buscar um filme pelo seu titulo.
+
+
+GET -> /api/movies/:id - O parametro desta rota deve ser um uuid. O retorna será JSON com a seguinte estrutura: 
+
+{
+    success: true,
+    data:{
+        id: uuid,
+        title: string,
+        director: string,
+        quantities: int
+    }
+        
+}
+
+ou 
+
+{ success: false, message: 'Movie not found' }
+
+Caso não o filme não seja localizado
+Caso o tipo do parametro da rota não seja respeitado o seguinte JSON será retornado: 
+{ success: false, messages: validation.error.details }
+Este é o JSON padrão quando ocorrer a falha do schema.
+
+POST -> /api/movies - Este recurso aceita o seguinte JSON:
+{
+    title: string,
+    director: string,
+    quantities: int
+}
+
+e após inserido retorna:
+
+{ 
+    success: true, 
+    data: {
+        id: uuid
+    } }
+}
+
+PUT -> /api/movies/:id - O parametro desta rota deve ser um uuid. Este recurso aceita o seguinte JSON:
+{
+    director: string,
+    quantities: int
+}
+caso ocorra a atualização do recurso, o seguinte JSON será retornado: 
+
+{ success: true }
+
+caso o filme não seja encontrado o seguinte JSON será retornado: 
+
+{ success: false, message: 'Movie not found' }
+
+DELETE -> /api/movies/:id - O parametro desta rota deve ser um uuid. Este recurso retorna o seguinte JSON:
+
+{ success: true }
+
+caso o filme não seja encontrado o seguinte JSON será retornado: 
+
+{ success: false, message: 'Movie not found' }
+
+Recurso /api/users esta relacionado a users
+
+GET -> /api/users - Retorna um JSON com a seguinte estrutura: 
+{   
+    success: true,
+    data: [{
+        id: uuid,
+        name: string,
+        email: string,
+        password: int
+    }]
+}
+
+ou 
+
+{ success: true, data: [] }
+
+Caso não tenha nenhum usuario inserido.
+
+GET -> /api/users/:id - O parametro desta rota deve ser um uuid. O retorna será JSON com a seguinte estrutura: 
+
+{
+    success: true,
+    data:{
+        id: uuid,
+        name: string,
+        email: string,
+        password: int
+    }
+        
+}
+
+ou 
+
+{ success: false, message: 'User not found' }
+
+Caso não o usuario não seja localizado.
+
+POST -> /api/users - Este recurso aceita o seguinte JSON:
+{
+    name: string,
+    email: string,
+    password: int
+}
+
+e após inserido retorna:
+
+{ 
+    success: true, 
+    data: {
+        id: uuid
+    } }
+}
+
+PUT -> /api/users/:id - O parametro desta rota deve ser um uuid. Este recurso aceita o seguinte JSON:
+{
+    name: string,
+    email: string,
+    password: int
+}
+caso ocorra a atualização do recurso, o seguinte JSON será retornado: 
+
+{ success: true }
+
+caso o ususario não seja encontrado o seguinte JSON será retornado: 
+
+{ success: false, message: 'User not found' }
+
+DELETE -> /api/users/:id - O parametro desta rota deve ser um uuid. Este recurso retorna o seguinte JSON:
+
+{ success: true }
+
+caso o usuario não seja encontrado o seguinte JSON será retornado: 
+
+{ success: false, message: 'User not found' }
+
+Recurso /api/rentals esta relacionado a rentals:
+
+GET -> /api/rentals - Retorna um JSON com a seguinte estrutura: 
+{   
+    success: true,
+    data: [{
+        id: uuid,
+        titleMovie: string,
+        name: string
+        email: string,
+        status: string
+    }]
+}
+
+ou 
+
+{ success: true, data: [] }
+
+Caso não tenha nenhum aluguel inserido.
+
+GET -> /api/rentals/:id - O parametro desta rota deve ser um uuid. O retorna será JSON com a seguinte estrutura: 
+
+{
+    success: true,
+    data:{
+        id: uuid,
+        titleMovie: string,
+        name: string
+        email: string,
+        status: string
+    }
+        
+}
+
+ou 
+
+{ success: false, message: 'Rental not found' }
+
+Caso não o aluguel não seja localizado.
+
+POST -> /api/rentals - Este recurso aceita o seguinte JSON:
+{
+    titleMovie: string,
+    idUser: uuid,
+    status: 'rented'
+}
+
+e após inserido retorna:
+
+{ 
+    success: true, 
+    data: {
+        id: uuid
+    } }
+}
+
+Neste recurso é de suma importancia que no campo titleMovie tenha um valor de um movie já inserido, caso isso não seja respeitado o seguinte JSON será retornado: 
+
+{ success: false, message: 'Movie not found' }
+
+Tambem, caso seja inserido um filme que não esteja disponivel o seguinte JSON irá retornar: 
+
+{ success: false, message: 'Movie not available' }
+
+e por ultimo, caso seja inserido um usuario que não exista o seguinte JSON irá retornar:
+
+{ success: false, message: 'User not found' }
+
+PUT -> /api/rentals/:id - O parametro desta rota deve ser um uuid. Este recurso aceita o seguinte JSON:
+{
+    status: 'returned'
+}
+caso ocorra a atualização do recurso, o seguinte JSON será retornado: 
+
+{ success: true }
+
+caso o aluguel não seja encontrado o seguinte JSON será retornado: 
+
+{ success: false, message: 'Rental not found' }
+
+DELETE -> /api/rentals/:id - O parametro desta rota deve ser um uuid. Este recurso retorna o seguinte JSON:
+
+{ success: true }
+
+caso o aluguel não seja encontrado o seguinte JSON será retornado: 
+
+{ success: false, message: 'Rental not found' }
