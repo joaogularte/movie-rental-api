@@ -1,6 +1,5 @@
 const jwt = require('jwt-simple');
 
-const knex = require('../../../src/config/db');
 const secret = require('../../../src/config/secret');
 const MovieService = require('../../../src/services/MovieService');
 const UserService = require('../../../src/services/UserService');

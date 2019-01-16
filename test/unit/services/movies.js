@@ -1,4 +1,3 @@
-const knex = require('../../../src/config/db');
 const MovieService = require('../../../src/services/MovieService');
 
 
