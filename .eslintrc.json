@@ -6,7 +6,8 @@
         "afterEach": true,
         "expect": true,
         "it": true,
-        "request": true
+        "request": true,
+        "knex": true
     },
     "rules": {
         "prefer-destructuring": ["error", {
