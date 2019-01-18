@@ -22,11 +22,15 @@ describe('Services Movies', () => {
   }];
 
   beforeEach((done) => {
-    knex.from('movies').del().then(() => {
-      knex.from('movies').insert(defaultMovie[0]).then(() => {
-        done();
-      });
-    });
+    knex.from('movies')
+      .insert(defaultMovie[0])
+      .then(() => done());
+  });
+
+  afterEach((done) => {
+    knex.from('movies')
+      .del()
+      .then(() => done());
   });
 
   describe('Get all movies: list()', () => {
