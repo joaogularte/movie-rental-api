@@ -1,6 +1,5 @@
 #### Teste
 * Teste unitario:
-    * UserService
     * RentalService
 
 * Teste de contrato
