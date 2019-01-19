@@ -8,6 +8,12 @@ describe('Services Users', () => {
     password: 'senhaDefaultUser',
   }];
 
+  const newUser = [{
+    name: 'New User',
+    email: 'newuser@email.com',
+    password: 'supersenha'
+  }]
+
   beforeEach((done) => {
     knex.from('users')
       .insert(defaultUser[0])
@@ -33,4 +39,11 @@ describe('Services Users', () => {
       expect(user).to.be.eql(defaultUser[0]);
     });
   });
+
+  describe('Create an user: post()', () => {
+    it('should return an user id', async () => {
+      const userId = await UserService.post(newUser[0]);
+      expect(userId.id).to.be.a.uuid('v4');
+    })
+  })
 });
