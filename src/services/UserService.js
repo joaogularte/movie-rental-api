@@ -35,10 +35,10 @@ class UserService {
 
     const password = bcrypt.hashSync(data.password, salt);
     const user = {
-      id: id,
+      id,
       name: data.name,
       email: data.email,
-      password: password,
+      password,
     };
     await UserModel.post(user);
     return { id: user.id };
@@ -58,7 +58,7 @@ class UserService {
     const updatedUser = {
       name: data.name,
       email: data.email,
-      password: password,
+      password,
     };
     await UserModel.put(userId, updatedUser);
     return true;
