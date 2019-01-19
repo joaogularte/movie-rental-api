@@ -60,7 +60,8 @@ describe('Services Movies', () => {
       expect(updated).to.have.eql(true);
     });
   });
-  describe('Create a movie: delete()', () => {
+
+  describe('Delete a movie: delete()', () => {
     it('should return true', async () => {
       const deleted = await MovieService.delete(defaultMovie[0].id);
       expect(deleted).to.have.eql(true);
