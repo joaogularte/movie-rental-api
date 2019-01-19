@@ -50,7 +50,7 @@ describe('Services Movies', () => {
   describe('Create a movie: post()', () => {
     it('should return a movie id', async () => {
       const movieId = await MovieService.post(newMovie[0]);
-      expect(movieId.id).to.have.lengthOf(36);
+      expect(movieId.id).to.be.a.uuid('v4');
     });
   });
 

@@ -11,8 +11,12 @@ describe('Services Users', () => {
   const newUser = [{
     name: 'New User',
     email: 'newuser@email.com',
-    password: 'supersenha'
-  }]
+    password: 'supersenha',
+  }];
+
+  const updatedUser = [
+    
+  ];
 
   beforeEach((done) => {
     knex.from('users')
@@ -44,6 +48,12 @@ describe('Services Users', () => {
     it('should return an user id', async () => {
       const userId = await UserService.post(newUser[0]);
       expect(userId.id).to.be.a.uuid('v4');
+    });
+  });
+
+  describe('Update an user: put()', () => {
+    it('should return true', async () => {
+      const updated = await UserService.put()
     })
   })
 });
