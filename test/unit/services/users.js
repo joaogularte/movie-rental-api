@@ -14,9 +14,11 @@ describe('Services Users', () => {
     password: 'supersenha',
   }];
 
-  const updatedUser = [
-    
-  ];
+  const updatedUser = {
+    name: 'Update User',
+    email: 'updateuser@email.com',
+    password: 'senhaatualizada',
+  };
 
   beforeEach((done) => {
     knex.from('users')
@@ -53,7 +55,14 @@ describe('Services Users', () => {
 
   describe('Update an user: put()', () => {
     it('should return true', async () => {
-      const updated = await UserService.put()
-    })
-  })
+      const updated = await UserService.put(defaultUser[0].id, updatedUser);
+      expect(updated).to.have.eql(true);
+    });
+  });
+
+  describe('Delete an user: delete()', () => {
+    it('should return true', async () => {
+
+    });
+  });
 });
