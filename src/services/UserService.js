@@ -38,7 +38,7 @@ class UserService {
       id: id,
       name: data.name,
       email: data.email,
-      password: password
+      password: password,
     };
     await UserModel.post(user);
     return { id: user.id };
