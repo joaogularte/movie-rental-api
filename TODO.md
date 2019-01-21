@@ -3,6 +3,9 @@
     * RentalService
 
 * Teste de contrato
+    * rentals
+    * movies
+    * users
 
 #### Docker
 
