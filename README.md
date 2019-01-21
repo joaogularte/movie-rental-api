@@ -1,6 +1,6 @@
 # movie-rental-api
 
-Movie-rental-api criada para o desafio proposto pela 4all.
+Movie-rental-api criada seguindo as boas praticas de desenvolvimento NodeJS
 
 /api/token
 /api/users
