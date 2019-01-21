@@ -1,6 +1,5 @@
 const MovieService = require('../../../src/services/MovieService');
 
-
 describe('Services Movies', () => {
   const defaultMovie = [{
     id: 'd1b039e8-997b-4bdf-8a20-1fae7c1c7c0d',
