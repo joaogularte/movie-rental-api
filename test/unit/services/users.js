@@ -62,7 +62,12 @@ describe('Services Users', () => {
 
   describe('Delete an user: delete()', () => {
     it('should return true', async () => {
-
+      const deleted = await UserService.delete(defaultUser[0].id);
+      expect(deleted).to.have.eql(true);
     });
   });
+
+  describe('Check the password: isPassword()', () => {
+    
+  })
 });
