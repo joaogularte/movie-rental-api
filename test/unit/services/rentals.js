@@ -13,4 +13,7 @@ describe('Services Rentals', () => {
         director: 'Director of Default Movie',
         quantities: 3    
     }
+    const defaultUser = {
+        
+    }
 });
