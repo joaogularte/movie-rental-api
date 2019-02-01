@@ -72,6 +72,6 @@ describe('Services Users', () => {
       const userId = await UserService.post(newUser[0]);
       const isPassword = await UserService.isPassword(userId.id, newUser[0].password);
       expect(isPassword).to.have.eql(true);
-    })
-  })
+    });
+  });
 });
