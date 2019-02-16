@@ -60,4 +60,15 @@ describe('Services Rentals', () => {
       expect(rentals[0]).to.have.property('status');
     });
   });
+
+  describe('Get a rental: get()', () => {
+    it('should return a rental', async () => {
+      const rental = await RentalService.get(defaultRental[0].id);
+      expect(rental).to.have.property('id');
+      expect(rental).to.have.property('titleMovie');
+      expect(rental).to.have.property('name');
+      expect(rental).to.have.property('email');
+      expect(rental).to.have.property('status');
+    });
+  });
 });
