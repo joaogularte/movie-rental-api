@@ -27,7 +27,37 @@ describe('Services Rentals', () => {
         defaultRental[0].idUser = defaultUser[0].id;
         knex.from('movies')
           .insert(defaultMovie[0])
-          .then(() => done());
+          .then(() => {
+            defaultRental[0].titleMovie = defaultMovie[0].title;
+            knex.from('rentals')
+              .insert(defaultRental[0])
+              .then(() => done());
+          });
       });
+  });
+
+  afterEach((done) => {
+    knex.from('rentals')
+      .del()
+      .then(() => {
+        knex.from('users')
+          .del()
+          .then(() => {
+            knex.from('movies')
+              .del()
+              .then(() => done());
+          });
+      });
+  });
+
+  describe('Get all rentals: list()', () => {
+    it('should return a list of rentals', async () => {
+      const rentals = await RentalService.list();
+      expect(rentals[0]).to.have.property('id');
+      expect(rentals[0]).to.have.property('titleMovie');
+      expect(rentals[0]).to.have.property('name');
+      expect(rentals[0]).to.have.property('email');
+      expect(rentals[0]).to.have.property('status');
+    });
   });
 });
