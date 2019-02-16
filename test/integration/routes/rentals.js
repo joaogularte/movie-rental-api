@@ -43,9 +43,7 @@ describe('Routes Rentals', () => {
         knex.from('users').del()
           .then(() => {
             knex.from('movies').del()
-              .then(() => {
-                done();
-              });
+              .then(() => done());
           });
       });
   });
