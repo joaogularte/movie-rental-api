@@ -6,7 +6,7 @@
   "scripts": {
     "start": "pm2 start process.yml",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint:fix && npm run test-integration && npm run test-unit",
     "test-integration": "mocha --opts test/integration/mocha.opts test/integration/**/*.js",
     "test-unit": "mocha --opts test/unit/mocha.opts test/unit/**/*.js",
     "lint": "eslint '**/*.js'",
