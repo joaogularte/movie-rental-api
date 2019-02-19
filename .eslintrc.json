@@ -13,6 +13,7 @@
         "prefer-destructuring": ["error", {
             "object": false
           }],
-        "no-console": ["error", {"allow": ["log"]}]
+        "no-console": ["error", {"allow": ["log"]}],
+        "no-unused-expressions": "off"
     }
 }
