@@ -93,4 +93,11 @@ describe('Services Rentals', () => {
       expect(updated).to.be.true;
     });
   });
+
+  describe('Delete a rental: delete()', () => {
+    it('should return true', async () => {
+      const deleted = await RentalService.delete(defaultRental[0].id);
+      expect(deleted).to.be.true;
+    })
+  })
 });
