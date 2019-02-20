@@ -1,6 +1,4 @@
 #### Teste
-* Teste unitario:
-    * RentalService
 
 * Teste de contrato
     * rentals
