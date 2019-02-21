@@ -98,6 +98,6 @@ describe('Services Rentals', () => {
     it('should return true', async () => {
       const deleted = await RentalService.delete(defaultRental[0].id);
       expect(deleted).to.be.true;
-    })
-  })
+    });
+  });
 });
