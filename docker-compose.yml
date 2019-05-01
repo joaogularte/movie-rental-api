@@ -1,0 +1,7 @@
+version: '2'
+services:
+  app:
+    build: ./docker/app/Dockerfile
+    ports: '3000:3000'
+    depends_on: 'mysql'
+  mysql:
